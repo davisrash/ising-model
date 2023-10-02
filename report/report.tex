@@ -1,0 +1,116 @@
+% This is a report that abandons the ACM template
+% The template can be readded at the end
+
+% FORMAT REQUIREMENTS
+% 500 words / One page single spaced
+% 12 pt font
+
+\documentclass[12pt]{article}
+
+\usepackage{mathtools}
+\usepackage{blindtext}
+
+% \usepackage[margin=1in]{geometry}
+
+\newcommand*{\eu}{e}
+\newcommand*{\iu}{i}
+
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}
+  {#1\,\delimsize\vert\,\mathopen{}#2}
+
+\usepackage[hidelinks]{hyperref}
+
+\title{Solving the Transverse-Field Ising Model on a Quantum Computer}
+\author{David Basoco \and Jack Hetherington \and Davis Rash \and Tim Ross}
+\date{October 4, 2023}
+
+\begin{document}
+  \maketitle
+
+  % LIKELY ABANDON ABSTRACT
+  % An abstract is already supposed to be ~250 words. In this case, it will
+  % probably keep us from writing enough elsewhere.
+  % \begin{abstract}
+  %  This project investigated the ability to simulate the Ising model using quantum gates. The code was tested on both quantum simulators and the public IBM quantum computer. [Discuss Results]
+  % \end{abstract}
+
+  \section{Introduction}
+  The transverse-field Ising Model is a quantum mechanical model of lattice sites with spin. In one dimension, the model can be described by the Hamiltonian
+  \begin{equation}
+    \label{eq:hamiltonian}
+    H = \sum_{i = 1}^{n} \sigma_{i}^{x} \sigma_{i + 1}^{x}
+        + \sigma_{1}^{y} \sigma_{2}^{z} \dotsm \sigma_{n - 1}^{z} \sigma_{n}^{y}
+        + \lambda \sum_{i = 1}^{n} \sigma_{i}^{z},
+  \end{equation}
+  where \( \lambda \) is the transverse magnetic field strength. The second term maps periodic boundary conditions to fermionic degrees of freedom. Its effect vanishes for \( n \to \infty \) but will alter our result for \( n = 4 \).
+
+  We simulated the Ising model on quantum simulators and the IBM [name] quantum computer. We implement the case \( n = 4 \). We conclude by comparing the results to the expected values for the Ising model % \cite{Cervera18}.
+
+  \section{Quantum Gate Operations}
+  To solve Eq.~\eqref{eq:hamiltonian} on a quantum computer, we first
+
+  In order to accurately decompose the Ising model Hamiltonian we needed to take a decoupled Hamiltonian and convert it to the Ising model Hamiltonian. [Insert Hamiltonian conversion eqs.]
+
+  \subsection{Jordan--Wigner Transform}
+  Under the Jodan--Wigner transformation
+  \begin{equation}
+    \label{eq:jordan-wigner}
+    c_{j}
+      = \biggl( \prod_{l < j} \sigma_{l}^{z} \biggr)
+        \frac{\sigma_{j}^{x} - \iu \sigma_{j}^{y}}{2},
+  \end{equation}
+  the Hamiltonian becomes
+  \begin{equation}
+    \label{eq:hamiltonian-fermion}
+    H = \frac{1}{2}
+        \sum_{i = 1}^{n} (c_{i + 1}^{\dagger} c_{i}^{\vphantom{\dagger}}
+                          + c_{i}^{\dagger} c_{i + 1}^{\vphantom{\dagger}}
+                          + c_{i}^{\dagger} c_{i + 1}^{\dagger}
+                          + c_{i}^{\vphantom{\dagger}}
+                            c_{i + 1}^{\vphantom{\dagger}})
+        + \lambda \sum_{i = 1}^{n} c_{i}^{\dagger} c_{i}^{\vphantom{\dagger}}.
+  \end{equation}
+  Fortunately, the Jordan--Wigner transformation requires no gates to implement; it is a simple relabeling of the qubits. However, now any swapping must be done with the fermionic SWAP (fSWAP) gate
+  \begin{equation}
+    \label{eq:fswap}
+    \mathrm{fSWAP}
+      = \begin{pmatrix}
+          1 & 0 & 0 & 0 \\
+          0 & 0 & 1 & 0 \\
+          0 & 1 & 0 & 0 \\
+          0 & 0 & 0 & -1
+        \end{pmatrix}.
+  \end{equation}
+
+  \subsection{Quantum Fourier Transform}
+
+  \begin{equation}
+    \label{eq:qft}
+    b_{k}
+      = \frac{1}{\sqrt{n}}
+        \sum_{j = 1}^{n} \eu^{2 \pi \iu j k / n} c_{j}, \qquad
+    k = -\frac{n}{2} + 1, \dotsc, \frac{n}{2}
+  \end{equation}
+
+  Although this is valid in general, we have \( n = 2^{m} \), permitting us to use the fast Fourier transform.
+
+  \subsection{Bogoliubov Transform}
+  \blindtext
+
+  \section{Time Evolution}
+  \blindtext
+
+  \section{Expected Results}
+  \blindtext
+
+  \section{Simulation Results}
+  \blindtext
+
+  \section{Quantum Computer Results}
+  \blindtext
+
+  \section{Conclusion}
+  \blindtext
+\end{document}

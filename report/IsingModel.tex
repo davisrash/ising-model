@@ -5,17 +5,17 @@
 %% The original source files were:
 %%
 %% samples.dtx  (with options: `acmtog')
-%% 
+%%
 %% IMPORTANT NOTICE:
-%% 
+%%
 %% For the copyright see the source file.
-%% 
+%%
 %% Any modified versions of this file must be renamed
 %% with new filenames distinct from sample-acmtog.tex.
-%% 
+%%
 %% For distribution of the original source see the terms
 %% for copying and modification in the file samples.dtx.
-%% 
+%%
 %% This generated file may be distributed as long as the
 %% original source files, as listed above, are part of the
 %% same distribution. (The sources need not necessarily be
@@ -35,18 +35,18 @@
 %%
 %% The first command in your LaTeX source must be the \documentclass command.
 \documentclass[acmtog]{acmart}
-%% NOTE that a single column version is required for 
+%% NOTE that a single column version is required for
 %% submission and peer review. This can be done by changing
-%% the \doucmentclass[...]{acmart} in this template to 
+%% the \doucmentclass[...]{acmart} in this template to
 %% \documentclass[manuscript,screen]{acmart}
-%% 
+%%
 %% To ensure 100% compatibility, please check the white list of
 %% approved LaTeX packages to be used with the Master Article Template at
-%% https://www.acm.org/publications/taps/whitelist-of-latex-packages 
-%% before creating your document. The white list page provides 
-%% information on how to submit additional LaTeX packages for 
+%% https://www.acm.org/publications/taps/whitelist-of-latex-packages
+%% before creating your document. The white list page provides
+%% information on how to submit additional LaTeX packages for
 %% review and adoption.
-%% Fonts used in the template cannot be substituted; margin 
+%% Fonts used in the template cannot be substituted; margin
 %% adjustments are not allowed.
 
 %%
@@ -62,7 +62,7 @@
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{Simulating the Transverse-Field Ising Model}
+\title{Solving the Transverse-Field Ising Model on a Quantum Computer}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -76,7 +76,9 @@
   \city{Golden}
   \state{Colorado}
   \country{USA}
-}\author{Jack Hetherington}
+}
+
+\author{Jack Hetherington}
 \affiliation{%
   \institution{Colorado School of Mines}
   \city{Golden}
@@ -121,7 +123,20 @@
 \maketitle
 
 \section{Introduction}
-The Ising Model is a statistical mechanics model of ferromagnetism, for the purposes of this paper we reference the one dimensional Ising model. We simulated the Ising model on quantum simulators and the IBM [name] quantum computer. We started by implementing the n=4 case for 4 sites, then expanded to account for additional sites. We conclude by comparing the results to the expected values for the Ising model \cite{Cervera18}.
+The transverse-field Ising Model is a quantum mechanical model of lattice sites with spin. In one dimension, the model can be described by the Hamiltonian
+\begin{equation}
+  H = \sum_{i = 1}^{n} \sigma_{i}^{x} \sigma_{i + 1}^{x}
+      + \lambda \sum_{i = 1}^{n} \sigma_{i}^{z},
+\end{equation}
+where each site is spin-\( 1 / 2 \) with nearest-neighbor interactions permitting antiferromagnetic ordering, and \( \lambda \) is the transverse magnetic field strength. Solving the model exactly as an infinite chain with periodic boundary conditions is infeasible, so we choose instead to solve the model
+\begin{equation}
+  H = \sum_{i = 1}^{n} \sigma_{i}^{x} \sigma_{i + 1}^{x}
+      + \sigma_{1}^{y} \sigma_{2}^{z} \dotsb
+      + \lambda \sum_{i = 1}^{n} \sigma_{i}^{z},
+\end{equation}
+
+
+We simulated the Ising model on quantum simulators and the IBM [name] quantum computer. We started by implementing the n=4 case for 4 sites, then expanded to account for additional sites. We conclude by comparing the results to the expected values for the Ising model \cite{Cervera18}.
 
 \section{Quantum Gate Operations}
 In order to accurately decompose the Ising model Hamiltonian we needed to take a decoupled Hamiltonian and convert it to the Ising model Hamiltonian. [Insert Hamiltonian conversion eqs.]
