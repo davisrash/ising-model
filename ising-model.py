@@ -1,15 +1,9 @@
-import math
-
-# import numpy as np
-
-print("Hello World!")
-###########################################################################################################################
 #Jack's Bog transform (untested)
 # Importing standard Qiskit libraries
 from qiskit import QuantumCircuit, transpile
 from qiskit.tools.jupyter import *
 from qiskit.visualization import *
-from ibm_quantum_widgets import *
+# from ibm_quantum_widgets import *
 
 # qiskit-ibmq-provider has been deprecated.
 # Please see the Migration Guides in https://ibm.biz/provider_migration_guide for more detail.
@@ -21,7 +15,7 @@ service = QiskitRuntimeService(channel="ibm_quantum")
 # Invoke a primitive. For more details see https://qiskit.org/documentation/partners/qiskit_ibm_runtime/tutorials.html
 # result = Sampler("ibmq_qasm_simulator").run(circuits).result()
 from qiskit import QuantumCircuit, execute, Aer, IBMQ
-x = QuantumRegister(2)
+# x = QuantumRegister(2, name='x')
 # Create a circuit with a register of three qubits
 circ = QuantumCircuit(2)
 theta = 0
@@ -50,7 +44,7 @@ circ.draw('mpl')
 
 ################################################################################################################
 #Github gates and n=4 setup
-%reset -f
+
 #%matplotlib inline
 # Importing standard Qiskit libraries and configuring account
 from qiskit import QuantumCircuit, execute, Aer, IBMQ, QuantumRegister
@@ -224,7 +218,7 @@ def paperFourier(circuit, qubits, n, k):
     circuit.cx(qubits[0], qubits[1])
     circuit.ch(qubits[1], qubits[0])
     circuit.cx(qubits[0], qubits[1])
-    circtui.cz(qubits[0], qubits[1])
+    circuit.cz(qubits[0], qubits[1])
 
 def paperFourierDag(circuit, qubits, n, k):
     inversePhaseGate = PhaseGate(2 * np.pi * k / n).inverse()
