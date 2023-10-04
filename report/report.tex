@@ -9,6 +9,7 @@
 
 \usepackage{mathtools}
 \usepackage{blindtext}
+\usepackage{bbding}
 
 % \usepackage[margin=1in]{geometry}
 
@@ -54,14 +55,17 @@
   In order to accurately decompose the Ising model Hamiltonian we needed to take a decoupled Hamiltonian and convert it to the Ising model Hamiltonian. [Insert Hamiltonian conversion eqs.]
 
   \subsection{Jordan--Wigner Transform}
+  The Jordan-Wigner Transformation converts spin operators into the fermionic creation and annihilation operators.
   Under the Jodan--Wigner transformation
   \begin{equation}
     \label{eq:jordan-wigner}
     c_{j}
       = \biggl( \prod_{l < j} \sigma_{l}^{z} \biggr)
-        \frac{\sigma_{j}^{x} - \iu \sigma_{j}^{y}}{2},
+        \frac{\sigma_{j}^{x} - \iu \sigma_{j}^{y}} {2}, 
+    c^{\dagger}_{j} = \frac{\sigma^{x}_{j}-\iu \sigmar^{y}_{j}}    
+        {2}, \biggl( \prod_{l < j} \sigma^{z}_{l} \biggr)
   \end{equation}
-  the Hamiltonian becomes
+  Then the Hamiltonian becomes
   \begin{equation}
     \label{eq:hamiltonian-fermion}
     H = \frac{1}{2}
