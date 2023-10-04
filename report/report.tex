@@ -9,6 +9,7 @@
 
 \usepackage{mathtools}
 \usepackage{blindtext}
+% \usepackage{bbding}
 
 % \usepackage[margin=1in]{geometry}
 
@@ -51,20 +52,44 @@
   \section{Quantum Gate Operations}
   To solve Eq.~\eqref{eq:hamiltonian} on a quantum computer, we first
 
-  In order to accurately decompose the Ising model Hamiltonian we needed to take a decoupled Hamiltonian and convert it to the Ising model Hamiltonian. [Insert Hamiltonian conversion eqs.]
+  To accurately decompose the Ising model Hamiltonian we need to take a decoupled Hamiltonian and convert it to the Ising model Hamiltonian. We can obtain this by applying a unitary disentangling operator such that
+  \begin{equation}
+    \tilde{H}
+      = U_{\textnormal{dis}}^{\dagger} H
+        U_{\textnormal{dis}}^{\vphantom{\dagger}},
+  \end{equation}
+  where \( H \) is the model Hamiltonian and \( \tilde{H} \) is a non interacting Hamiltonian. For the case of the Ising Hamiltonian, the method to obtain the \( U_{\textnormal{dis}} \) is threefold.
+  \begin{enumerate}
+   \item We first need to map spins to fermionic modes with the Jordan--Wigner transform.
+   \item Then we need to get the fermions in moment space by applying the Quantum Fourier transform.
+   \item Finally, we perform the Bogoliubov transform to decouple the modes in opposite momenta.
+  \end{enumerate}
+  This gives us the three-step recipe for out unitary disentangling operator:
+  \begin{equation}
+    U_{\textnormal{dis}}
+      = U_{\textnormal{JW}} U_{\textnormal{FT}} U_{\textnormal{Bog}}
+  \end{equation}
 
   \subsection{Jordan--Wigner Transform}
+  The Jordan--Wigner transformation converts spin operators into the fermionic creation and annihilation operators.
+
   Under the Jodan--Wigner transformation
-  \begin{equation}
+  \begin{align}
     \label{eq:jordan-wigner}
     c_{j}
-      = \biggl( \prod_{l < j} \sigma_{l}^{z} \biggr)
-        \frac{\sigma_{j}^{x} - \iu \sigma_{j}^{y}}{2},
-  \end{equation}
-  the Hamiltonian becomes
+      &= \biggl( \prod_{l < j} \sigma_{l}^{z} \biggr)
+         \frac{\sigma_{j}^{x} - \iu \sigma_{j}^{y}}{2},
+    &
+    c_{j}^{\dagger}
+      &= \frac{\sigma^{x}_{j} - \iu \sigma^{y}_{j}}{2}
+         \biggl( \prod_{l < j} \sigma^{z}_{l} \biggr),
+  \end{align}
+
+  Then the Hamiltonian becomes
   \begin{equation}
     \label{eq:hamiltonian-fermion}
-    H = \frac{1}{2}
+    H_{c}
+      = \frac{1}{2}
         \sum_{i = 1}^{n} (c_{i + 1}^{\dagger} c_{i}^{\vphantom{\dagger}}
                           + c_{i}^{\dagger} c_{i + 1}^{\vphantom{\dagger}}
                           + c_{i}^{\dagger} c_{i + 1}^{\dagger}
@@ -85,6 +110,7 @@
   \end{equation}
 
   \subsection{Quantum Fourier Transform}
+  Now we need to get the fermionic modes to momentum space with the quantum Fourier Transform.
 
   \begin{equation}
     \label{eq:qft}
@@ -97,7 +123,47 @@
   Although this is valid in general, we have \( n = 2^{m} \), permitting us to use the fast Fourier transform.
 
   \subsection{Bogoliubov Transform}
-  \blindtext
+  The final step is to decouple the modes that have opposite momentum. This will act over two qubit gates that represent opposite momenta.
+  \begin{equation}
+    B_{k}^{n}
+      = \begin{pmatrix}
+              \cos(\theta_{k} / n) & 0 & 0 & \iu \sin(\theta_{k} / n) \\
+                                 0 & 1 & 0 &                        0 \\
+                                 0 & 0 & 1 &                        0 \\
+          \iu \sin(\theta_{k} / n) & 0 & 0 &     \cos(\theta_{k} / n)
+      \end{pmatrix},
+  \end{equation}
+  \begin{equation}
+    \theta_{k}
+      = \arccos
+        \frac{\lambda - \cos(2 \pi k / n)}
+             {\sqrt{(\lambda - \cos(2 \pi k / n))^{2} + \sin^{2}(2 \pi k / n)}}.
+  \end{equation}
+  This returns our diagonal Hamiltonian
+    \begin{equation}
+      \tilde{H}
+        = H_{a}
+        = \sum_{k = -n / 2 + 1}^{n / 2}
+          \omega_{k}^{\vphantom{\dagger}} a_{k}^{\dagger}
+          a_{k}^{\vphantom{\dagger}},
+    \end{equation}
+    where
+    \begin{equation}
+      \omega_{k}
+        = \sqrt{\biggl( \lambda - \cos \frac{2\pi k}{n} \biggr)^{2}
+                + \sin^{2} \frac{2\pi k}{n}}.
+    \end{equation}
+    This result is consistant with a transformation which mixes the two modes in accordance with
+    \begin{subequations}
+      \begin{align}
+        a_{k}
+          &= u_{k}^{\vphantom{\dagger}} b_{k}^{\vphantom{\dagger}}
+             + \iu v_{k}^{\vphantom{\dagger}} b_{-k}^{\dagger}, \\
+        a_{k}^{\dagger}
+          &= u_{k}^{\vphantom{\dagger}} b_{k}^{\dagger}
+             + \iu v_{k}^{\vphantom{\dagger}} b_{-k}^{\vphantom{\dagger}}.
+      \end{align}
+    \end{subequations}
 
   \section{Time Evolution}
   \blindtext
