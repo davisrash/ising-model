@@ -11,6 +11,7 @@
 \usepackage{blindtext}
 \usepackage{bbding}
 
+
 % \usepackage[margin=1in]{geometry}
 
 \newcommand*{\eu}{e}
@@ -52,7 +53,20 @@
   \section{Quantum Gate Operations}
   To solve Eq.~\eqref{eq:hamiltonian} on a quantum computer, we first
 
-  In order to accurately decompose the Ising model Hamiltonian we needed to take a decoupled Hamiltonian and convert it to the Ising model Hamiltonian. [Insert Hamiltonian conversion eqs.]
+  In order to accurately decompose the Ising model Hamiltonian we needed to take a decoupled Hamiltonian and convert it to the Ising model Hamiltonian. We can obtain this by applying the unitary disentangling operator such that:
+  \begin{equation}
+    \tilde{H} = U_{dis}^{\dagger}HU_{dis},
+  \end{equation}
+  where H is the model Hamiltonian and $\tilde{H}$ is a non interacting Hamiltonian. For the case of the Ising Hamiltonian, the method to obtain the $U_{dis}$ is three fold. 
+  \begin{enumerate}
+   \item We first need to map spins to fermionic modes with the Jordan-Wigner transform. 
+   \item Then we need to get the fermions in moment space by applying the Quantum Fourier transform. 
+   \item Finally, we perform the Bogoliubov transform to decouple the modes in opposite momenta. 
+  \end{enumerate}
+  This gives us the three step recipe for out unitary disentangling operator:
+  \begin{equation}
+    U_{dis} = U_{JW}U_{QFT}U_{Bog}
+  \end{equation}
 
   \subsection{Jordan--Wigner Transform}
   The Jordan-Wigner Transformation converts spin operators into the fermionic creation and annihilation operators.
@@ -89,6 +103,7 @@
   \end{equation}
 
   \subsection{Quantum Fourier Transform}
+  Now we need to get the fermionic modes to momentum space with the quantum Fourier Transform.
 
   \begin{equation}
     \label{eq:qft}
@@ -101,7 +116,30 @@
   Although this is valid in general, we have \( n = 2^{m} \), permitting us to use the fast Fourier transform.
 
   \subsection{Bogoliubov Transform}
-  \blindtext
+  The final step is to decouple the modes that have opposite momentum. This will act over two qubit gates that represent opposite momenta.
+  \begin{equation}
+    B_{k}^{n} 
+    = \begin{pmatrix}
+        \cos(\frac{\theta_k}{n}) & 0 & 0 & i\sin(\frac{\theta_k}{n}) \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        i\sin(\frac{\theta_k}{n}) & 0 & 0 & \cos(\frac{\theta_k}{n})
+    \end{pmatrix},
+  \end{equation}
+  \begin{equation}
+    \theta_k = \arccos(\frac{\lambda - \cos(\frac{2\pi k}{n})}{\sqrt{(\lambda - \cos(\frac{2\pi k}{n}))^2 + \sin^2(\frac{2\pi k}{n})}}).
+  \end{equation}
+  This returns our diagonal Hamiltonian:
+    \begin{equation}
+      \tilde{H} = H_{a} = \sum_{k=\frac{-n}{2}+1}^{\frac{n}{2}} \omega_{k}a_{k}^{\dagger}a_{k},
+    \end{equation}
+    where $\omega_{k} = \sqrt{(\lambda - \cos(\frac{2\pi k}{n}))^2 + \sin^2(\frac{2\pi k}{n})^2}$. This result is consistant with a transformation which mixes the two modes in accordance with
+    \begin{equation}
+      a_{k} = u_{k}b_{k}+iv_{k}c_{-k}^{\dagger},
+    \end{equation}
+    \begin{equation}
+      a_{k}^{\dagger} = u_{k}c_{k}^{\dagger}+iv_{k}c_{-k}.
+    \end{equation}
 
   \section{Time Evolution}
   \blindtext
