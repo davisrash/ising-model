@@ -11,6 +11,7 @@
 \usepackage{blindtext}
 % \usepackage{bbding}
 
+
 % \usepackage[margin=1in]{geometry}
 
 \newcommand*{\eu}{e}
@@ -166,17 +167,38 @@
     \end{subequations}
 
   \section{Time Evolution}
-  \blindtext
+  With $U_{dis}$ applied to the basis states we exactly time evolve the problem. The time evolution for a given state using the time-independent Hamiltonian is described using the time evolution unitary $U(t) \coloneqq \eu^{-itH}$:
+  \begin{equation}
+    \ket{\psi(t)} = U(t)\ket{\psi_{0}} = \sum_{i} \eu^{-it\epsilon_{i}} \ket{E_{i}}\braket{E_{i}}{\psi_{0}},
+  \end{equation}
+  where $\bra{\psi_{0}}$ is the initial state and $\epsilon_{i}$ are the corresponding energies of the Hamiltonian states $\ket{E_{i}}$. If the observable, M, is such that $[H,M] \neq 0$, then the expectation value of M, will show an oscillation in time given by
+  \begin{equation}
+    \left\langle M(t)\right\rangle = \sum_{i,j}\eu^{-it(\epsilon_{i}-\epsilon_{j})}\braket{\psi_{0}}{E_{j}}\bra{E_{j}}M\ket{E_{i}}\braket{E_{i}}{\psi_{0}}.
+  \end{equation}
+  We now have computational basis states from the eigenstates of the non-interacting Hamiltonian $\tilde{H}$ and all energies $\epsilon_{i}$. We can construct the time evolution for a given state $\ket{\psi_{0}}$ by expressing it in computational basis and adding the corresponding factors $\eu^{-it\epsilon_{i}}$. Given a 4 unit system, as example, we can express the wave function in the $\tilde{H}$ basis, using $U_{dis}^{\dagger}$, as
+  \begin{equation}
+    \ket{\psi_{0}} = U_{dis}^{\dagger}\ket{0000} = \cos \phi\ket{0000} + i\sin \phi\ket{1100},
+  \end{equation}
+  where $\phi = \arccos(\lambda/\sqrt{1+\lambda ^2})/2$. Then, we apply the time evolution operator to obtain $\ket{\psi (t)}$ on the computational basis $\ket{0000}$:
+
+  \begin{equation}
+    \ket{\psi (t)} = \biggl( \cos \phi\ket{00} + i\eu^{i4t\sqrt{1+\lambda ^2}} \sin \phi \ket{11} \biggr) \otimes \ket{00}
+  \end{equation}
+  This expression can be presented analytically,
+
+  \begin{equation}
+    \left\langle \sigma_{z} \right\rangle = \frac{1 + 2\lambda ^2 + \cos \biggl( 4t\sqrt{1 + \lambda ^2}\biggr)}{2 + 2\lambda ^2}.
+  \end{equation}
+  These steps are represented only briefly in the code but perform a the function to obtain the expectation value of transverse magnetization $M_{z} = \frac{1}{2}\left\langle \sigma_{z}\right\rangle$.
 
   \section{Results}
-  \blindtext
 
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/ground-state-magnetization-test}
-    \caption{Caption.%
-             \label{fig:ground-state-magnetization}}
-  \end{figure}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.7\textwidth]{images/ground-state-magnetization-test}
+      \caption{Caption.%
+              \label{fig:ground-state-magnetization}}
+    \end{figure}
 
   \section{Quantum Computer Results}
   \blindtext
