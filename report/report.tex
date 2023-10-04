@@ -192,17 +192,29 @@
   These steps are represented only briefly in the code but perform a the function to obtain the expectation value of transverse magnetization $M_{z} = \frac{1}{2}\left\langle \sigma_{z}\right\rangle$. We will now be able to test various magnetization factors, $\lambda$, in time to compare with each other. Assuming a sinusoidal result, factors to look for are frequency, amplitude, damping and starting value. 
 
   \section{Results}
-
-    \begin{figure}
+   
+    \begin{figure}[h]
       \centering
-      \includegraphics[width=0.7\textwidth]{images/ground-state-magnetization-test}
-      \caption{Caption.%
+      \includegraphics[width=0.7\textwidth]{images/ground-state-magnetization}
+      \caption{The results obtained from running on both a quantum simulator and on a 7 qubit IBM quantum computer %
               \label{fig:ground-state-magnetization}}
     \end{figure}
 
-  \section{Quantum Computer Results}
-  \blindtext
+    As seen in figure 1 both the simulated results and actual results are very close to the expected results. The differences on the real quantum computer are coming from the quantum noise present. The results also show an improvement over the Cervera-Lierta paper which showed a larger difference from the expected value for \begin{math}\lambda\end{math} greater than 1 than our results [1]. This could be due to improved quantum systems, which indicates that the Ising model could be used as a benchmark test for quantum computers. \\
 
-  \section{Conclusion}
-  \blindtext
+    We had issues getting the time evolution section to run on the quantum computer, but the results from the simulator are presented below in figure 2.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.7\textwidth]{images/time-evolution-magnetization-test}
+        \caption{The time evolution results from ibmq-qasm-simulator %
+              \label{fig:time-evolution-mangetization-test}}
+    \end{figure}
+
+    The simulated results match the expected results very closely, the only major differences are being caused by the sampling rate skipping over the relative minima and maxima for some of the simulations.
+
+    \section{References}
+    [1] Alba Cervera-Lierta. 2018. Exact Ising model simulation on a quantum computer.
+Quantum (Dec. 2018). https://arxiv.org/pdf/1807.07112.pdf
+
+
 \end{document}
