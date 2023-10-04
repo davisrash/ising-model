@@ -1,16 +1,8 @@
-% This is a report that abandons the ACM template
-% The template can be readded at the end
-
-% FORMAT REQUIREMENTS
-% 500 words / One page single spaced
-% 12 pt font
-
 \documentclass[12pt]{article}
 
 \usepackage{mathtools}
 \usepackage{blindtext}
 % \usepackage{bbding}
-
 
 % \usepackage[margin=1in]{geometry}
 
@@ -22,6 +14,9 @@
 \DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}
   {#1\,\delimsize\vert\,\mathopen{}#2}
 
+\usepackage{biblatex}
+\addbibresource{report.bib}
+
 \usepackage[hidelinks]{hyperref}
 
 \title{Solving the Transverse-Field Ising Model on a Quantum Computer}
@@ -31,15 +26,8 @@
 \begin{document}
   \maketitle
 
-  % LIKELY ABANDON ABSTRACT
-  % An abstract is already supposed to be ~250 words. In this case, it will
-  % probably keep us from writing enough elsewhere.
-  % \begin{abstract}
-  %  This project investigated the ability to simulate the Ising model using quantum gates. The code was tested on both quantum simulators and the public IBM quantum computer. [Discuss Results]
-  % \end{abstract}
-
   \section{Introduction}
-  The transverse-field Ising Model is a quantum mechanical model of lattice sites with spin. In one dimension, the model can be described by the Hamiltonian
+  The transverse-field Ising model is a quantum mechanical model of lattice sites with spin. In one dimension, the model can be described by the Hamiltonian
   \begin{equation}
     \label{eq:hamiltonian}
     H = \sum_{i = 1}^{n} \sigma_{i}^{x} \sigma_{i + 1}^{x}
@@ -48,7 +36,7 @@
   \end{equation}
   where \( \lambda \) is the transverse magnetic field strength. The second term maps periodic boundary conditions to fermionic degrees of freedom. Its effect vanishes for \( n \to \infty \) but will alter our result for \( n = 4 \).
 
-  We simulated the Ising model on quantum simulators and the IBM [name] quantum computer. We implement the case \( n = 4 \). We conclude by comparing the results to the expected values for the Ising model % \cite{Cervera18}.
+  We simulated the Ising model on quantum simulators and the \texttt{ibm\_nairobi} 7-qubit quantum computer for \( n = 4 \) and compare our results to the original findings~\cite{Cervera18}.
 
   \section{Quantum Gate Operations}
   To solve Eq.~\eqref{eq:hamiltonian} on a quantum computer, we first
@@ -189,7 +177,7 @@
   \begin{equation}
     \left\langle \sigma_{z} \right\rangle = \frac{1 + 2\lambda ^2 + \cos \biggl( 4t\sqrt{1 + \lambda ^2}\biggr)}{2 + 2\lambda ^2}.
   \end{equation}
-  These steps are represented only briefly in the code but perform a the function to obtain the expectation value of transverse magnetization $M_{z} = \frac{1}{2}\left\langle \sigma_{z}\right\rangle$. We will now be able to test various magnetization factors, $\lambda$, in time to compare with each other. Assuming a sinusoidal result, factors to look for are frequency, amplitude, damping and starting value. 
+  These steps are represented only briefly in the code but perform a the function to obtain the expectation value of transverse magnetization $M_{z} = \frac{1}{2}\left\langle \sigma_{z}\right\rangle$. We will now be able to test various magnetization factors, $\lambda$, in time to compare with each other. Assuming a sinusoidal result, factors to look for are frequency, amplitude, damping and starting value.
 
   \section{Results}
    
