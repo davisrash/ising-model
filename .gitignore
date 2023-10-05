@@ -5,7 +5,6 @@
 report/report.aux
 report/report.bbl
 report/report.bcf
-report/report.blg
 report/report.fdb_latexmk
 report/report.fls
 report/report.log
@@ -13,13 +12,3 @@ report/report.out
 report/report.pdf
 report/report.run.xml
 report/report.synctex.gz
-
-report/acm/IsingModel.aux
-report/acm/IsingModel.bbl
-report/acm/IsingModel.blg
-report/acm/IsingModel.fdb_latexmk
-report/acm/IsingModel.fls
-report/acm/IsingModel.log
-report/acm/IsingModel.out
-report/acm/IsingModel.pdf
-report/acm/IsingModel.synctex.gz

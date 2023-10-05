@@ -211,17 +211,16 @@
   \end{figure}
   The differences on the real quantum computer are coming from the quantum noise present. The results also show an improvement over the results in Ref.~\cite{CerveraLierta18}, which fail to show a distict phase transition near \( \lambda = 1 \). This is likely due to improvements in the quantum systems over the last five years, supporting the idea that the exact Hamiltonian simulations can be used to benchmark quantum computers.
 
-  The jobs sent to \texttt{ibm\_nairobi} for the time evolution of the transverse magnetization remain in a long queue. The simulated results are presented in Fig~\ref{fig:time-evolution-mangetization}.
+  The time evolution of the transverse magnetization are presented in Fig~\ref{fig:time-evolution-mangetization}.
   \begin{figure}
       \centering
+      \includegraphics[width=\textwidth]{images/time-evolution-magnetization}
       \includegraphics[width=\textwidth]
-        {images/time-evolution-magnetization-test}
-      \includegraphics[width=\textwidth]
-        {images/time-evolution-magnetization-separate-test}
-      \caption{The time evolution results using \texttt{ibmq\_qasm\_simulator}.%
+        {images/time-evolution-magnetization-separate}
+      \caption{The time evolution results on \texttt{ibm\_nairobi}.%
         \label{fig:time-evolution-mangetization}}
   \end{figure}
-  These results closely match the expected results with the largest deviations due to undersampling.
+  These results also more closely match the expected results, reaching greater magnetizations than the results in Ref.~\cite{CerveraLierta18}. The magnetization appears to consistently undershoot the expected value by about \( 0.1 \).
 
   \printbibliography
 \end{document}
