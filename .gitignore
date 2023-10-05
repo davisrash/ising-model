@@ -2,21 +2,13 @@
 .venv
 .vscode
 
-report/IsingModel.aux
-report/IsingModel.bbl
-report/IsingModel.blg
-report/IsingModel.fdb_latexmk
-report/IsingModel.fls
-report/IsingModel.log
-report/IsingModel.out
-report/IsingModel.pdf
-report/IsingModel.synctex.gz
-
 report/report.aux
 report/report.bbl
+report/report.bcf
 report/report.fdb_latexmk
 report/report.fls
 report/report.log
 report/report.out
 report/report.pdf
+report/report.run.xml
 report/report.synctex.gz
