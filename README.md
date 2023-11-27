@@ -2,10 +2,10 @@
 Transverse-field Ising model in Qiskit
 
 ## Introduction
-This repository contains the code for the transverse-field Ising model (chain) in Qiskit. The code is based on the [paper](https://doi.org/10.22331/q-2018-12-21-114) by Alba Cervera-Lierta. The code is written in Python 3.11.5 and uses Qiskit 0.44.1.
+This repository contains the code for the transverse-field Ising model (chain) in Qiskit. The code is based on the [paper](https://doi.org/10.22331/q-2018-12-21-114) by Alba Cervera-Lierta. The code is written in Python 3.11.6 and uses Qiskit 0.45.0.
 
 ## Installation
-To run the code, you need to nstall the requirements in `requirements.txt` using pip. I recommend that you create a virtual environment. Note that `requirements.txt` is not minimal; some packages were helpful during development but were eventually unused in the final product.
+To run the code, you need to nstall the requirements in `requirements.txt` using pip. I recommend that you create a virtual environment.
 
 ## Usage
 The code runs entirely in the Jupyter notebook `ising-model.ipynb`. After installing the required packages, you may run the notebook normally. Two things are true by default in the notebook:
