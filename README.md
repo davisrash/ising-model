@@ -1,6 +1,12 @@
 # ising-model
 Transverse-field Ising model in Qiskit
 
+## TODO
+1. Give `module` a good name.
+2. Determine use of `fswap.py`. Delete if useless.
+...
+100. Update `README.md` from original information below.
+
 ## Introduction
 This repository contains the code for the transverse-field Ising model (chain) in Qiskit. The code is based on the [paper](https://doi.org/10.22331/q-2018-12-21-114) by Alba Cervera-Lierta. The code is written in Python 3.11.6 and uses Qiskit 0.45.0.
 
