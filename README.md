@@ -2,8 +2,8 @@
 Transverse-field Ising model in Qiskit
 
 ## TODO
-1. Give `module` a good name.
-2. Determine use of `fswap.py`. Delete if useless.
+1. ...
+2. ...
 ...
 100. Update `README.md` from original information below.
 
