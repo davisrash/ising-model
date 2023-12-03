@@ -1,6 +1,8 @@
 .venv
 .vscode
 
+__pycache__
+
 report/report.aux
 report/report.bbl
 report/report.bcf
