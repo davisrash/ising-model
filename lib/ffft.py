@@ -22,6 +22,7 @@ class FFFTGate(Gate):
             (CHGate(), [q[1], q[0]], []),
             (CXGate(), [q[0], q[1]], []),
             (CZGate(), [q[0], q[1]], []),
+            #(PhaseGate(2 * np.pi * self.params[0] / 8), [q[0]], []),
         ]
 
         for instr, qargs, cargs in rules:
