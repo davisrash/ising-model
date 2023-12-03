@@ -17,12 +17,12 @@ class FFFTGate(Gate):
         q = QuantumRegister(2, "q")
         qc = QuantumCircuit(q, name=self.name)
         rules = [
-            (PhaseGate(2 * np.pi * self.params[0] / 8), [q[0]], []),
+            # (PhaseGate(2 * np.pi * self.params[0] / 8), [q[0]], []),
             (CXGate(), [q[0], q[1]], []),
             (CHGate(), [q[1], q[0]], []),
             (CXGate(), [q[0], q[1]], []),
             (CZGate(), [q[0], q[1]], []),
-            #(PhaseGate(2 * np.pi * self.params[0] / 8), [q[0]], []),
+            (PhaseGate(2 * np.pi * self.params[0] / 8), [q[0]], []),
         ]
 
         for instr, qargs, cargs in rules:
