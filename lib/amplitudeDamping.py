@@ -50,8 +50,8 @@ def initial_state_witness(q, sys, anc):
     return ic
 
 def amplitude_damping_channel(q, c, sys, env, R, t):
-    r"""Returns a QuantumCircuit implementing the amplitude damping channel on the system qubit
-
+    """Returns a QuantumCircuit implementing the amplitude damping channel on the system qubit
+    
     Args:
         q (QuantumRegister): the register to use for the circuit
         c (ClassicalRegister): the register to use for the measurement of the system qubit
@@ -59,62 +59,62 @@ def amplitude_damping_channel(q, c, sys, env, R, t):
         env (int): index for the environment qubit
         R (float): value of R = \gamma_0/\lambda
         t (float): value of the time variable
-
+    
     Returns:
         A QuantumCircuit object
     """
     ad = QuantumCircuit(q, c)
-
+    
     # Rotation angle
     theta = 2.0 * np.arccos(c1(R, t))
-
+    
     # Channel
-    ad.cu(theta, 0.0, 0.0, 0.0, q[sys], q[env])
-    ad.cx(q[env], q[sys])
-
+    ad.cu(theta, 0.0, 0.0, 0.0, sys, env)
+    ad.cx(env, sys)
+    
     # Masurement in the computational basis
-    ad.measure(q[sys], c[0])
-
+    # ad.measure(q[sys], c[0])
+    
     return ad
 
-def amplitude_damping_channel_witness(q, c, sys, env, anc, observable, R, t):
-    r"""Returns a QuantumCircuit implementing the amplitude damping channel on the system qubit with non-Markovianity witness
-
+def amplitude_damping_channel_witness(qc, sys, env, anc, observable, R, t):
+    """Returns a QuantumCircuit implementing the amplitude damping channel on the system qubit with non-Markovianity witness
+    
     Args:
         q (QuantumRegister): the register to use for the circuit
-        c (ClassicalRegister): the register to use for the measurement of the system and ancilla qubits
         sys (int): index for the system qubit
         env (int): index for the environment qubit
         anc (int): index for the ancillary qubit
         observable (str): the observable to be measured
         R (float): value of R = \gamma_0/\lambda
         t (float): value of the time variable
-
+    
     Returns:
         A QuantumCircuit object
     """
-    ad = QuantumCircuit(q, c)
-
+    # ad = QuantumCircuit(q, c)
+    # ad = QuantumCircuit(q)
+    
     # Rotation angle
     theta = 2.0 * np.arccos(c1(R, t))
-
+    
     # Channel
-    ad.cu(theta, 0.0, 0.0, 0.0, q[sys], q[env])
-    ad.cx(q[env], q[sys])
-
+    qc.cu(theta, 0.0, 0.0, 0.0, sys, env)
+    qc.cx(env, sys)
+    
     # Masurement of the corresponding observable
     if observable == 'xx':
-        ad.h(sys)
-        ad.h(anc)
+        qc.h(sys)
+        qc.h(anc)
     elif observable == 'yy':
-        ad.sdg(sys)
-        ad.h(sys)
-        ad.sdg(anc)
-        ad.h(anc)
-    ad.measure(sys,c[0])
-    ad.measure(anc,c[1])
-
-    return ad
+        qc.sdg(sys)
+        qc.h(sys)
+        qc.sdg(anc)
+        qc.h(anc)
+    # qc.measure(sys)
+    # qc.measure(anc)
+    
+    return qc
 
 def amplitude_damping_channel_witness_noisy(q, c, sys, env, anc, observable, R, t):
     r"""Returns a QuantumCircuit implementing the amplitude damping channel on the system qubit with non-Markovianity witness
