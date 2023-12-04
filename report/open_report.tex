@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+
+\usepackage{mathtools}
+
+% \usepackage[margin=1in]{geometry}
+
+\newcommand*{\eu}{e}
+\newcommand*{\iu}{i}
+
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}
+  {#1\,\delimsize\vert\,\mathopen{}#2}
+
+\usepackage{biblatex}
+\addbibresource{report.bib}
+
+\usepackage[hidelinks]{hyperref}
+
+\title{Solving the Transverse-Field Ising Model on a Quantum Computer}
+\author{David Basoco \and Jack Hetherington \and Davis Rash \and Tim Ross}
+\date{October 4, 2023}
+
+\begin{document}
+  \maketitle
+
+
+  \section{Introduction}
+
+  \subsection{Applications}
+
+  \section{Quantum Gate Operations}
+
+  \subsection{Quantum Fast Fourier Transformation}
+
+  \subsection{Bogoliubov Transformation}
+
+  \section{Time Evolution}
+
+  \section{Open Quantum Decoherence Channels}
+
+  \subsection{Amplitude Damping Channel}
+
+  \subsection{Depolarizing Channel}
+
+  \section{Results}
+
+  \printbibliography
+\end{document}
