@@ -71,10 +71,61 @@ No quantum system is perfectly protected from the environment. Simulating the Is
   \subsection{Bogoliubov Transformation}
 
   \section{Time Evolution}
+  With \( U_{\textnormal{dis}} \) applied to the basis states we exactly time evolve the problem. The time evolution for a given state using the time-independent Hamiltonian is described using the time evolution unitary \( U(t) = \eu^{-\iu t H} \):
+  \begin{equation}
+    \ket{\psi(t)}
+      = U(t) \ket{\psi_{0}}
+      = \sum_{i} \eu^{-\iu t \epsilon_{i}} \ket{E_{i}} \braket{E_{i}}{\psi_{0}},
+  \end{equation}
+  where \( \ket{\psi_{0}} \) is the initial state and \( \epsilon_{i} \) are the corresponding energies of the Hamiltonian states \( \ket{E_{i}} \). If an observable \( M \) is such that \( [H, M] \neq 0 \), then \( \langle M \rangle \) shows an oscillation in time
+  \begin{equation}
+    \langle M(t) \rangle
+      = \sum_{i, j} \eu^{-\iu t (\epsilon_{i} - \epsilon_{j})}
+        \braket{\psi_{0}}{E_{j}} \bra{E_{j}} M \ket{E_{i}}
+        \braket{E_{i}}{\psi_{0}}.
+  \end{equation}
+
+  We now have computational basis states from the eigenstates \( \tilde{H} \) and all energies \( \epsilon_{i} \). We can construct the time evolution for a given state \( \ket{\psi_{0}} \) by expressing it in the computational basis and adding the corresponding factors \( \eu^{-\iu t \epsilon_{i}} \). The wave form expression can be presented analytically as
+  \begin{equation}
+    \langle \sigma_{z} \rangle
+      = \frac{1 + 2 \lambda^{2} + \cos \bigl( 4 t \sqrt{1 + \lambda^{2}} \bigr)}
+             {2 + 2 \lambda^{2}}.
+  \end{equation}
+  These steps are represented only briefly in the code but perform the function to obtain the expectation value of transverse magnetization \( M_{z} = \frac{1}{2} \langle \sigma_{z} \rangle \). 
 
   \section{Open Quantum Decoherence Channels}
 
   \subsection{Amplitude Damping Channel}
+  For an arbitrary pure state of the system \( \ket{\psi}_{s} = \alpha \ket{0}_{s} + \beta \ket{1}_{s} \), and setting the state of the environment to vacuum \( \ket{0}_{e} \), the two gates between the system and environment qubits transform the joint state into
+  \begin{equation}
+    \alpha \ket{0}_{1} \ket{0}_{2} + \beta \cos \theta \ket{1}_{1} \ket{0}_{2}
+    + \beta \sin \theta \ket{0}_{1} \ket{1}_{2}.
+  \end{equation}
+  where \( q_{1} \) and \( q_{2} \) are the system and environment qubits, respectively. Therefore, identifying the states \( \ket{0}_{1} \) and \( \ket{1}_{1} \) with the ground state and excited states, respectively, and by choosing \( \theta = \arccos c_{1}(t) \), we get a reduced state of the system such that
+  \begin{equation}
+    \rho_{s}(t)
+      = \begin{pmatrix}
+          \lvert c_{1}(t) \rvert^{2} & c_{0}^{*} c_{1}(t)             \\
+          c_{0} c_{1}^{*}(t)         & 1 - \lvert c_{1}(t) \rvert^{2}
+        \end{pmatrix}
+  \end{equation}
+  These factors \( c_{0} \) and \( c_{1} \) are time-dependent factors of the wave equation. With a decay rate \( \gamma(t) \) from
+  \begin{equation}
+    \gamma(t) = -2 \mathcal{R} \biggl[ \frac{\dot{c}_{1}(t)}{c_{1}(t)} \biggr],
+  \end{equation}
+  with
+  \begin{equation}
+    c_{1}(t)
+      = c_{1}(0) \eu^{-\lambda t / 2}
+        \biggl[
+          \cosh \biggl( \frac{\lambda t}{2} \sqrt{1 - 2 R} \biggr)
+          + \frac{1}{\sqrt{1 - 2 R}}
+            \sinh \biggl( \frac{\lambda t}{2} \sqrt{1 - 2 R} \biggr)
+        \biggr].
+  \end{equation}
+  The application of this channel resulted in a lower average magnetization of the system. Notably it did not affect amplitude or frequency in time of the magnetization envelope. Nor did it show a decay affect on the magnetization.
+
+  FIGURE HERE
 
   \subsection{Depolarizing Channel}
 The depolarization channel applied over time will move the system into an $\frac{I}{2}$ state. The rate of this decoherence is affected by a decay-rate parameter $\gamma$, which was kept constant at 0.5 for all runs. As shown by the following graph, the magnetization of the system decreases over time while coupled to the system. Since the depolarizing channel is only coupled at a single site, the decrease in energy applied to the single site must be propagating through the system and decreasing the magnetization of the whole system, but the affect of the transverse field prevents the system from going all the way into the $\frac{I}{2}$ state. The three values of $\lambda$ were graphed with the depolarizing channel, as shown in the figures. The effect of the depolarization channel is most noticeable with the higher value of $\lambda$, see Fig.~\ref{fig:DepolChannelLambda18},  but the decrease in magnetization can also be seen in the lower $\lambda$s in Fig.~\ref{fig:DepolChannelLambda05} and Fig.~\ref{fig:DepolChannelLambda09} .
