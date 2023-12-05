@@ -27,6 +27,23 @@
 
   \section{Introduction}
 
+The transverse-field Ising model is a quantum mechanical model of a spin lattice, and can be simulated on a quantum computer. The Hamiltonian of the Ising Model is given by 
+\begin{equation}
+    \label{eq:hamiltonian}
+    H = \sum_{i = 1}^{n} \sigma_{i}^{x} \sigma_{i + 1}^{x}
+        + \sigma_{1}^{y} \sigma_{2}^{z} \dotsm \sigma_{n - 1}^{z} \sigma_{n}^{y}
+        + \lambda \sum_{i = 1}^{n} \sigma_{i}^{z},
+  \end{equation}
+ The system being studied in this project is an Ising model structured in a loop with 8 sites.
+ The magnetization of the full Ising model can be evolved over time, to analyze the effects of changes to parameters. Since no quantum system can be perfectly isolated from the environment, the system will be coupled to an environment at a single site. The system is represented in Fig.~\ref{fig:SystemDiagram}.
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/SystemDiagram.png}
+    \caption{Representation of the system being studied.%
+      \label{fig:SystemDiagram}}
+  \end{figure}
+Due to limitations of using the IBM quantum systems, and the large number of runs needed to get necessary data, the IBM QASM simulator was used for this project. 
+
   \subsection{Applications}
 
   \section{Quantum Gate Operations}
@@ -42,8 +59,32 @@
   \subsection{Amplitude Damping Channel}
 
   \subsection{Depolarizing Channel}
+The depolarization channel applied over time will move the system into an $\frac{I}{2}$ state. The rate of this decoherence is affected by a decay-rate parameter $\gamma$, which was kept constant at 0.5 for all runs. As shown by the following graph, the magnetization of the system decreases over time while coupled to the system. Since the depolarizing channel is only coupled at a single site, the decrease in energy applied to the single site must be propagating through the system and decreasing the magnetization of the whole system, but the affect of the transverse field prevents the system from going all the way into the $\frac{I}{2}$ state. The three values of $\lambda$ were graphed with the depolarizing channel, as shown in the figures. The effect of the depolarization channel is most noticeable with the higher value of $\lambda$, see Fig.~\ref{fig:DepolChannelLambda18},  but the decrease in magnetization can also be seen in the lower $\lambda$s in Fig.~\ref{fig:DepolChannelLambda05} and Fig.~\ref{fig:DepolChannelLambda09} .
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/DepolChannelLambda05.png}
+    \caption{Time evolution of the Ising model coupled to a depolarizing channel with $\lambda$ = 1.8%
+      \label{fig:DepolChannelLambda05}}
+  \end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/DepolChannelLambda09.png}
+    \caption{Time evolution of the Ising model coupled to a depolarizing channel with $\lambda$ = 1.8%
+      \label{fig:DepolChannelLambda09}}
+  \end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{images/DepolChannelLambda18.png}
+    \caption{Time evolution of the Ising model coupled to a depolarizing channel with $\lambda$ = 1.8.%
+      \label{fig:DepolChannelLambda18}}
+  \end{figure}
 
   \section{Results}
 
   \printbibliography
 \end{document}
+
+
