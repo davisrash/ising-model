@@ -46,7 +46,7 @@ Due to limitations of using the IBM quantum systems, and the large number of run
 
   \subsection{Applications}
 
-No quantum system is perfectly protected from the environment. Simulating the Ising model, with a known result, can provide information on what kinds of noise are present in an untested quantum computer. Each type of noise affects the Ising model, some examples include the amplitude damping channel causes a shift down in the total magnetization and the depolarizing channel causes the magnetization to decay over time. This will let us determine the exact type(s) of noise affecting the system.
+No quantum system is perfectly protected from the environment. Simulating the Ising model, with a known result, can provide information on what kinds of noise are present in an untested quantum computer. Including details on what type(s) of noise are affecting the system, and how strongly they impact it.
 
   \section{Quantum Gate Operations}
  To solve the Ising model on a quantum computer, we need to diagonalize Eq.~\eqref{eq:hamiltonian}. We do this by applying a unitary disentangling operator \( U_{\textnormal{dis}} \) such that
@@ -103,6 +103,7 @@ The depolarization channel applied over time will move the system into an $\frac
 
   \section{Results}
 
+ Each type of noise affects the Ising model simulation differently, some examples include the amplitude damping channel causes a shift down in the total magnetization and the depolarizing channel causes the magnetization to decay over time. These distinct differences allow us to determine what types of noise are present in a system, and how strong each type is as well. This will be helpful in determining what types of noise and how much noise will need to be worked around in a given quantum computer.
   \printbibliography
 \end{document}
 
