@@ -46,7 +46,26 @@ Due to limitations of using the IBM quantum systems, and the large number of run
 
   \subsection{Applications}
 
+No quantum system is perfectly protected from the environment. Simulating the Ising model, with a known result, can provide information on what kinds of noise are present in an untested quantum computer. Each type of noise affects the Ising model, some examples include the amplitude damping channel causes a shift down in the total magnetization and the depolarizing channel causes the magnetization to decay over time. This will let us determine the exact type(s) of noise affecting the system.
+
   \section{Quantum Gate Operations}
+ To solve the Ising model on a quantum computer, we need to diagonalize Eq.~\eqref{eq:hamiltonian}. We do this by applying a unitary disentangling operator \( U_{\textnormal{dis}} \) such that
+  \begin{equation}
+    \tilde{H}
+      = U_{\textnormal{dis}}^{\dagger} H
+        U_{\textnormal{dis}}^{\vphantom{\dagger}},
+  \end{equation}
+  where \( \tilde{H} \) is a noninteracting Hamiltonian. For the Ising model, the method to obtain the \( U_{\textnormal{dis}} \) is threefold.
+  \begin{enumerate}
+   \item We first need to map spins to fermionic modes with the Jordan--Wigner transform. If this step is required varies depending on the hardware involved, in our case it was not required.
+   \item Then we need to get the fermions in moment space by applying the Quantum Fourier transform.
+   \item Finally, we perform the Bogoliubov transform to decouple the modes in opposite momenta.
+  \end{enumerate}
+  This gives us the three-step recipe for our unitary disentangling operator, which is the same for all qubit counts.
+  \begin{equation}
+    U_{\textnormal{dis}}
+      = U_{\textnormal{JW}} U_{\textnormal{FT}} U_{\textnormal{Bog}}.
+  \end{equation}
 
   \subsection{Quantum Fast Fourier Transformation}
 
