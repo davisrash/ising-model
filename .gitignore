@@ -1,7 +1,7 @@
 .venv
 .vscode
 
-__pycache__
+lib/__pycache__
 
 report/*.aux
 report/*.bbl
