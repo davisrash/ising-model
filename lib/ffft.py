@@ -148,27 +148,27 @@ class FFFT(BlueprintCircuit):
         if num_qubits == 2:
             circuit.append(_F2Gate(), qargs=self.qubits)
         else:
-
             circuit.i(self.qubits)
 
             circuit.compose(
-                FFFT(num_qubits // 2), qubits=self.qubits[: num_qubits // 2], inplace=True
+                FFFT(num_qubits // 2),
+                qubits=self.qubits[: num_qubits // 2],
+                inplace=True,
             )
             circuit.compose(
-                FFFT(num_qubits // 2), qubits=self.qubits[num_qubits // 2 :], inplace=True
+                FFFT(num_qubits // 2),
+                qubits=self.qubits[num_qubits // 2 :],
+                inplace=True,
             )
 
             for i in range(num_qubits // 2):
                 circuit.p(2 * np.pi * i / num_qubits, self.qubits[num_qubits // 2 + i])
                 circuit.append(_F2Gate(), qargs=[i, num_qubits // 2 + i])
-            # for i in reversed(range(num_qubits // 2)):
-            #    circuit.append(_F2Gate(), qargs=[i, num_qubits // 2 + i])
 
         if self.do_swaps:
             pass
 
         wrapped = (
-            # circuit.to_instruction() if self.insert_barriers else circuit.to_gate()
-            circuit.to_instruction()
+            circuit.to_instruction() if self.insert_barriers else circuit.to_gate()
         )
         self.compose(wrapped, qubits=self.qubits, inplace=True)
