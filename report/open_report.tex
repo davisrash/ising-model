@@ -1,8 +1,8 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{article}{\twocolumn}
 
 \usepackage{mathtools}
 
-% \usepackage[margin=1in]{geometry}
+\usepackage[margin=1in]{geometry}
 
 \newcommand*{\eu}{e}
 \newcommand*{\iu}{i}
@@ -24,7 +24,6 @@
 \begin{document}
   \maketitle
 
-
   \section{Introduction}
 
 The transverse-field Ising model is a quantum mechanical model of a spin lattice, and can be simulated on a quantum computer. The Hamiltonian of the Ising Model is given by 
@@ -38,7 +37,7 @@ The transverse-field Ising model is a quantum mechanical model of a spin lattice
  The magnetization of the full Ising model can be evolved over time, to analyze the effects of changes to parameters. Since no quantum system can be perfectly isolated from the environment, the system will be coupled to an environment at a single site. The system is represented in Fig.~\ref{fig:SystemDiagram}.
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{images/SystemDiagram.png}
+    \includegraphics[width=\columnwidth]{images/SystemDiagram.png}
     \caption{Representation of the system being studied.%
       \label{fig:SystemDiagram}}
   \end{figure}
@@ -82,21 +81,21 @@ The depolarization channel applied over time will move the system into an $\frac
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{images/DepolChannelLambda05.png}
+    \includegraphics[width=\columnwidth]{images/DepolChannelLambda05.png}
     \caption{Time evolution of the Ising model coupled to a depolarizing channel with $\lambda$ = 1.8%
       \label{fig:DepolChannelLambda05}}
   \end{figure}
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{images/DepolChannelLambda09.png}
+    \includegraphics[width=\columnwidth]{images/DepolChannelLambda09.png}
     \caption{Time evolution of the Ising model coupled to a depolarizing channel with $\lambda$ = 1.8%
       \label{fig:DepolChannelLambda09}}
   \end{figure}
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{images/DepolChannelLambda18.png}
+    \includegraphics[width=\columnwidth]{images/DepolChannelLambda18.png}
     \caption{Time evolution of the Ising model coupled to a depolarizing channel with $\lambda$ = 1.8.%
       \label{fig:DepolChannelLambda18}}
   \end{figure}
@@ -105,6 +104,7 @@ The depolarization channel applied over time will move the system into an $\frac
 
  Each type of noise affects the Ising model simulation differently, some examples include the amplitude damping channel causes a shift down in the total magnetization and the depolarizing channel causes the magnetization to decay over time. These distinct differences allow us to determine what types of noise are present in a system, and how strong each type is as well. This will be helpful in determining what types of noise and how much noise will need to be worked around in a given quantum computer.
   \printbibliography
+
 \end{document}
 
 
