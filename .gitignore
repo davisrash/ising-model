@@ -3,13 +3,15 @@
 
 __pycache__
 
-report/report.aux
-report/report.bbl
-report/report.bcf
-report/report.fdb_latexmk
-report/report.fls
-report/report.log
-report/report.out
-report/report.pdf
-report/report.run.xml
-report/report.synctex.gz
+report/*.aux
+report/*.bbl
+report/*.bcf
+report/*.blg
+report/*.fdb_latexmk
+report/*.fls
+report/*.log
+report/*.out
+report/*.pdf
+report/*.run.xml
+report/*.synctex.gz
+report/*.synctex(busy)
