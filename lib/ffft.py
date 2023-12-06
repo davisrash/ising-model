@@ -148,7 +148,7 @@ class FFFT(BlueprintCircuit):
         if num_qubits == 2:
             circuit.append(_F2Gate(), qargs=self.qubits)
         else:
-            circuit.i(self.qubits)
+            circuit.i(self.qubits)  # permutation
 
             circuit.compose(
                 FFFT(num_qubits // 2),
